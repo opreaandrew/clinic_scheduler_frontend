@@ -1,8 +1,6 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+// src/app/app.config.ts
 
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+export const AppConfig = {
+  apiUrl: 'http://localhost:8080',
+  providers: [],
 };
