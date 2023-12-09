@@ -1,7 +1,11 @@
 // src/app/appointment/appointment.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { AppointmentService } from '../appointment.service';
+import { AppointmentService } from '../services/appointment.service';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { AppointmentModel } from '../models/appointment.model';
+
 
 @Component({
   selector: 'app-appointment',
@@ -9,14 +13,15 @@ import { AppointmentService } from '../appointment.service';
   styleUrls: ['./appointment.component.css'],
 })
 export class AppointmentComponent implements OnInit {
-  appointments: any[] = [];
 
   displayedColumns: string[] = ['id', 'date', 'startTime', 'endTime', 'status'];
+  dataSource: MatTableDataSource<AppointmentModel> = new MatTableDataSource<AppointmentModel>();
+
   constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
-    this.appointmentService.getAllAppointments().subscribe((appointments: any[]) => {
-      this.appointments = appointments.map((element: any) => {
+    this.appointmentService.getAllAppointments().subscribe(result => {
+      this.dataSource.data = result.map((element: any) => {
         return {
           id: element.id,
           date: element.date,
@@ -24,7 +29,8 @@ export class AppointmentComponent implements OnInit {
           endTime: element.endTime,
           status: element.status
         };
-      })
+      });
     });
   }
 }
+

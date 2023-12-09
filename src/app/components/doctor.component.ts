@@ -1,7 +1,7 @@
 // src/app/doctor/doctor.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { Doctorservice } from '../doctor.service';
+import { DoctorService } from '../services/doctor.service';
 
 @Component({
   selector: 'app-doctor',
@@ -11,7 +11,7 @@ import { Doctorservice } from '../doctor.service';
 export class DoctorComponent implements OnInit {
   doctors: any[] = [];
 
-  constructor(private doctorService: Doctorservice) {}
+  constructor(private doctorService: DoctorService) {}
 
   ngOnInit(): any {
     this.doctorService.getAllDoctors().subscribe((doctors: any[]) => {
