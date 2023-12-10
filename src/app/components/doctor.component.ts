@@ -53,4 +53,9 @@ export class DoctorComponent implements OnInit {
       // }
     })
   }
+
+  delete(id: number): void {
+    this.doctorService.deleteDoctor(id).subscribe();
+    location.reload();
+  }
 }

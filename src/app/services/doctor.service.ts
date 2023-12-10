@@ -22,4 +22,8 @@ export class DoctorService {
    return this.http.patch(this.url + '/' + id, requestBody);
  }
 
+ deleteDoctor(id: number): Observable<any> {
+  return this.http.delete(this.url + '/' + id);
+}
+
 }

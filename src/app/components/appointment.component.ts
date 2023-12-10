@@ -16,7 +16,7 @@ import { AppointmentFormComponent } from '../forms/appointment-form.component';
 })
 export class AppointmentComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'date', 'startTime', 'endTime', 'status'];
+  displayedColumns: string[] = ['id', 'date', 'startTime', 'endTime', 'status', 'doctor', 'patient', 'actions'];
   dataSource: MatTableDataSource<AppointmentModel> = new MatTableDataSource<AppointmentModel>();
 
   constructor(private appointmentService: AppointmentService, private dialogRef: MatDialog) {}
@@ -29,32 +29,22 @@ export class AppointmentComponent implements OnInit {
           date: element.date,
           startTime: element.startTime,
           endTime: element.endTime,
-          status: element.status
+          status: element.status,
+          doctor: element.doctor.name,
+          patient: element.patient.name
         };
       });
     });
   }
 
-  openDialog(country?: AppointmentModel): void {
-    console.log('opening dialog');
-    const dialogRef = this.dialogRef.open(AppointmentFormComponent, {
-      width: '500px',
-      backdropClass: 'custom-dialog-backdrop-class',
-      panelClass: 'custom-dialog-panel-class',
-      data: country
-    });
+  complete(id: number): void {
+    this.appointmentService.statusChange(id, 'completed').subscribe();
+    location.reload();
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('close');
-
-      if (result.event === 'submit' && country) {
-        this.appointmentService.updateAppointment(country.id, result.data).subscribe();
-        location.reload();
-      } // else if (result.event === 'add') {
-      //   this.appointmentService.addAppointment(result.data).subscribe();
-      //   location.reload();
-      // }
-    })
+  cancel(id: number): void {
+    this.appointmentService.statusChange(id, 'canceled').subscribe();
+    location.reload();
   }
 
 }

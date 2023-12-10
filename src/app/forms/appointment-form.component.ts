@@ -14,6 +14,8 @@ export class AppointmentFormComponent {
     startTime: new FormControl('', Validators.required),
     endTime: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
+    doctor: new FormControl('', Validators.required),
+    patient: new FormControl('', Validators.required)
   });
 
   currentAppointment: AppointmentModel;
@@ -28,7 +30,9 @@ export class AppointmentFormComponent {
     this.appointmentForm.controls.date.setValue(this.currentAppointment.date);
     this.appointmentForm.controls.startTime.setValue(this.currentAppointment.startTime);
     this.appointmentForm.controls.endTime.setValue(this.currentAppointment.endTime);
-    this.appointmentForm.controls.status.setValue(this.currentAppointment.status.toString());
+    this.appointmentForm.controls.status.setValue(this.currentAppointment.status);
+    this.appointmentForm.controls.doctor.setValue(this.currentAppointment.doctor);
+    this.appointmentForm.controls.patient.setValue(this.currentAppointment.patient);
   }
 
   onSubmit(): void {
@@ -37,6 +41,8 @@ export class AppointmentFormComponent {
       startTime: this.appointmentForm.controls.startTime.getRawValue(),
       endTime: this.appointmentForm.controls.endTime.getRawValue(),
       status: this.appointmentForm.controls.status.getRawValue(),
+      doctor: this.appointmentForm.controls.doctor.getRawValue(),
+      patient: this.appointmentForm.controls.patient.getRawValue()
     }
 
     if (this.currentAppointment) {

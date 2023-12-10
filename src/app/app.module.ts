@@ -15,8 +15,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { DoctorFormComponent } from './forms/doctor-form.component';
 import { PatientFormComponent } from './forms/patient-form.component';
-
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -35,7 +38,13 @@ import { PatientFormComponent } from './forms/patient-form.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatDialogModule,
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })

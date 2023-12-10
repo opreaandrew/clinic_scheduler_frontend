@@ -12,14 +12,16 @@ export class AppointmentService {
 
   url = 'http://localhost:8080/appointments';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getAllAppointments(): Observable<any> {
-    return this.httpClient.get(this.url);
+    return this.http.get(this.url);
   }
 
- updateAppointment(id: number, requestBody: AppointmentModel): Observable<any> {
-   return this.httpClient.patch(this.url + '/' + id, requestBody);
- }
+ 
+  statusChange(id: number, status: string): Observable<any> {
+    const url = `${this.url}/${id}/${status}`;
+    return this.http.patch(url, []);
+  }
 
 }

@@ -3,5 +3,7 @@ export interface AppointmentModel {
     date: string,
     startTime: string,
     endTime: string,
-    status: string
+    status: string,
+    doctor: string,
+    patient: string
 }
