@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DoctorModel } from '../models/doctor.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +18,8 @@ export class DoctorService {
     return this.http.get(this.url);
   }
 
-//  updateCountry(id: number, requestBody: CountryModel): Observable<any> {
-//    return this.http.patch(this.url + '/' + id, requestBody);
-//  }
+ updateDoctor(id: number, requestBody: DoctorModel): Observable<any> {
+   return this.http.patch(this.url + '/' + id, requestBody);
+ }
 
 }

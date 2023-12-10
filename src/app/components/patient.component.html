@@ -1,3 +1,29 @@
-<!-- src/app/patient/patient.component.html -->
-
-<p>Patient Component Works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let patient">{{ patient.id }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let patient">{{ patient.name }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef>Birth Date</th>
+      <td mat-cell *matCellDef="let patient">{{ patient.birthDate }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="emergencyContact">
+      <th mat-header-cell *matHeaderCellDef>Emergency Contact</th>
+      <td mat-cell *matCellDef="let patient">{{ patient.emergencyContact }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="sex">
+      <th mat-header-cell *matHeaderCellDef>Sex</th>
+      <td mat-cell *matCellDef="let patient">{{ patient.sex }}</td>
+    </ng-container>
+  
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

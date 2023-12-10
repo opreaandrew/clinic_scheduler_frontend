@@ -1,10 +1,12 @@
 // src/app/appointment/appointment.component.ts
 
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AppointmentService } from '../services/appointment.service';
+import { AppointmentModel } from '../models/appointment.model';
 
 import { MatTableDataSource } from '@angular/material/table';
-import { AppointmentModel } from '../models/appointment.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AppointmentFormComponent } from '../forms/appointment-form.component';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class AppointmentComponent implements OnInit {
   displayedColumns: string[] = ['id', 'date', 'startTime', 'endTime', 'status'];
   dataSource: MatTableDataSource<AppointmentModel> = new MatTableDataSource<AppointmentModel>();
 
-  constructor(private appointmentService: AppointmentService) {}
+  constructor(private appointmentService: AppointmentService, private dialogRef: MatDialog) {}
 
   ngOnInit(): void {
     this.appointmentService.getAllAppointments().subscribe(result => {
@@ -32,5 +34,28 @@ export class AppointmentComponent implements OnInit {
       });
     });
   }
+
+  openDialog(country?: AppointmentModel): void {
+    console.log('opening dialog');
+    const dialogRef = this.dialogRef.open(AppointmentFormComponent, {
+      width: '500px',
+      backdropClass: 'custom-dialog-backdrop-class',
+      panelClass: 'custom-dialog-panel-class',
+      data: country
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('close');
+
+      if (result.event === 'submit' && country) {
+        this.appointmentService.updateAppointment(country.id, result.data).subscribe();
+        location.reload();
+      } // else if (result.event === 'add') {
+      //   this.appointmentService.addAppointment(result.data).subscribe();
+      //   location.reload();
+      // }
+    })
+  }
+
 }
 
