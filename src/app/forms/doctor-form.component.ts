@@ -8,7 +8,7 @@ import { DoctorModel } from '../models/doctor.model';
   templateUrl: './doctor-form.component.html',
   styleUrl: './doctor-form.component.css'
 })
-export class DoctorFormComponent {
+export class DoctorFormComponent implements OnInit{
   doctorForm = new FormGroup({
     name: new FormControl('', Validators.required),
     specialization: new FormControl('', Validators.required)
@@ -25,19 +25,21 @@ export class DoctorFormComponent {
   ngOnInit(): void {
     this.doctorForm.controls.name.setValue(this.currentDoctor.name);
     this.doctorForm.controls.specialization.setValue(this.currentDoctor.specialization);
-     }
+  }
 
   onSubmit(): void {
-    const updatedCountry = {
+    const updatedDoctor = {
       name: this.doctorForm.controls.name.getRawValue(),
-      specialization: this.doctorForm.controls.specialization.getRawValue(),
-      }
+      specialization: this.doctorForm.controls.specialization.getRawValue()
+    }
+
 
     if (this.currentDoctor) {
-      this.dialogRef.close({ event: 'submit', data: { value: updatedCountry, isSearch: false } });
+      this.dialogRef.close({ event: 'submit', data: { value: updatedDoctor, isSearch: false } });
     } else {
-      this.dialogRef.close({ event: 'add', data: { value: updatedCountry, isSearch: false } });
+      this.dialogRef.close({ event: 'add', data: { value: updatedDoctor, isSearch: false } });
     }
+
   }
 
   cancel(): void {

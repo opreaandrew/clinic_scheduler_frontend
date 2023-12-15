@@ -1,5 +1,3 @@
-// src/app/doctor/doctor.component.ts
-
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DoctorService } from '../services/doctor.service';
 import { DoctorModel } from '../models/doctor.model';
@@ -18,7 +16,7 @@ export class DoctorComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'specialization', 'actions'];
   dataSource: MatTableDataSource<DoctorModel> = new MatTableDataSource<DoctorModel>();
 
-  constructor(private doctorService: DoctorService, private dialogRef: MatDialog) {}
+  constructor(private doctorService: DoctorService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.doctorService.getAllDoctors().subscribe(result => {
@@ -32,25 +30,25 @@ export class DoctorComponent implements OnInit {
     });
   }
 
-  openDialog(country?: DoctorModel): void {
+  openDialog(doctor?: DoctorModel): void {
     console.log('opening dialog');
     const dialogRef = this.dialogRef.open(DoctorFormComponent, {
       width: '500px',
       backdropClass: 'custom-dialog-backdrop-class',
       panelClass: 'custom-dialog-panel-class',
-      data: country
+      data: doctor
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('close');
 
-      if (result.event === 'submit' && country) {
-        this.doctorService.updateDoctor(country.id, result.data).subscribe();
+      if (result.event === 'submit' && doctor) {
+        this.doctorService.updateDoctor(doctor.id, result.data).subscribe();
         location.reload();
-      } // else if (result.event === 'add') {
-      //   this.appointmentService.addAppointment(result.data).subscribe();
-      //   location.reload();
-      // }
+      } else if (result.event === 'add') {
+        this.doctorService.addDoctor(result.data).subscribe();
+        location.reload();
+      }
     })
   }
 

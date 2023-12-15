@@ -9,41 +9,38 @@ import { PatientModel } from '../models/patient.model';
   styleUrl: './patient-form.component.css'
 })
 export class PatientFormComponent {
-  appointmentForm = new FormGroup({
+  patientForm = new FormGroup({
     name: new FormControl('', Validators.required),
     birthDate: new FormControl('', Validators.required),
     emergencyContact: new FormControl('', Validators.required),
     sex: new FormControl('', Validators.required),
   });
 
-  currentAppointment: PatientModel;
+  currentPatient: PatientModel;
 
   constructor(public dialogRef: MatDialogRef<PatientFormComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) data: any
   ) {
-    this.currentAppointment = data;
+    this.currentPatient = data;
   }
 
   ngOnInit(): void {
-    this.appointmentForm.controls.name.setValue(this.currentAppointment.name);
-    this.appointmentForm.controls.birthDate.setValue(this.currentAppointment.birthDate);
-    this.appointmentForm.controls.emergencyContact.setValue(this.currentAppointment.emergencyContact);
-    this.appointmentForm.controls.sex.setValue(this.currentAppointment.sex.toString());
+    this.patientForm.controls.name.setValue(this.currentPatient.name);
+    this.patientForm.controls.birthDate.setValue(this.currentPatient.birthDate);
+    this.patientForm.controls.emergencyContact.setValue(this.currentPatient.emergencyContact);
+    this.patientForm.controls.sex.setValue(this.currentPatient.sex.toString());
   }
 
   onSubmit(): void {
-    const updatedCountry = {
-      name: this.appointmentForm.controls.name.getRawValue(),
-      birthDate: this.appointmentForm.controls.birthDate.getRawValue(),
-      emergencyContact: this.appointmentForm.controls.emergencyContact.getRawValue(),
-      sex: this.appointmentForm.controls.sex.getRawValue(),
+    const updatedPatient = {
+      name: this.patientForm.controls.name.getRawValue(),
+      birthDate: this.patientForm.controls.birthDate.getRawValue(),
+      emergencyContact: this.patientForm.controls.emergencyContact.getRawValue(),
+      sex: this.patientForm.controls.sex.getRawValue(),
     }
 
-    if (this.currentAppointment) {
-      this.dialogRef.close({ event: 'submit', data: { value: updatedCountry, isSearch: false } });
-    } else {
-      this.dialogRef.close({ event: 'add', data: { value: updatedCountry, isSearch: false } });
-    }
+   this.dialogRef.close({ event: 'submit', data: updatedPatient });
+   
   }
 
   cancel(): void {

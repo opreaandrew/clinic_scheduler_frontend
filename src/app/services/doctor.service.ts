@@ -18,12 +18,15 @@ export class DoctorService {
     return this.http.get(this.url);
   }
 
- updateDoctor(id: number, requestBody: DoctorModel): Observable<any> {
-   return this.http.patch(this.url + '/' + id, requestBody);
- }
+  updateDoctor(id: number, requestBody: DoctorModel): Observable<any> {
+    return this.http.patch(this.url + '/' + id, requestBody);
+  }
 
- deleteDoctor(id: number): Observable<any> {
-  return this.http.delete(this.url + '/' + id);
-}
+  deleteDoctor(id: number): Observable<any> {
+    return this.http.delete(this.url + '/' + id);
+  }
 
+  addDoctor(requestBody: DoctorModel): Observable<any> {
+    return this.http.post(this.url, requestBody);
+  }
 }
