@@ -39,8 +39,11 @@ export class PatientFormComponent {
       sex: this.patientForm.controls.sex.getRawValue(),
     }
 
-   this.dialogRef.close({ event: 'submit', data: updatedPatient });
-   
+    if (this.currentPatient) {
+      this.dialogRef.close({ event: 'submit', data: updatedPatient});
+    } else {
+      this.dialogRef.close({ event: 'add', data: updatedPatient});
+    }   
   }
 
   cancel(): void {

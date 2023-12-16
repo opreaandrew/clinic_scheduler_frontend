@@ -2,8 +2,28 @@
     <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
        
         <mat-form-field appearance="fill">
-            <mat-label>Status</mat-label>
-            <input matInput id="status" type="text" formControlName="status">
+            <mat-label>Date</mat-label>
+            <input matInput id="date" type="text" formControlName="date">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Start Time</mat-label>
+            <input matInput id="startTime" type="text" formControlName="startTime">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>End Time</mat-label>
+            <input matInput id="endTime" type="text" formControlName="endTime">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Doctor ID</mat-label>
+            <input matInput id="doctor" type="text" value="SCHEDULED" formControlName="doctor">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Patient ID</mat-label>
+            <input matInput id="patient" type="text" formControlName="patient">
         </mat-form-field>
 
         <div class="button-container">

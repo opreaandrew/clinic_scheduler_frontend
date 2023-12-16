@@ -24,4 +24,8 @@ export class AppointmentService {
     return this.http.patch(url, []);
   }
 
+  addAppointment(requestBody: AppointmentModel): Observable<any> {
+    return this.http.post(this.url, requestBody);
+  }
+
 }

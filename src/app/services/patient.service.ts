@@ -22,4 +22,8 @@ export class PatientService {
     return this.http.patch(this.url + '/' + id, requestBody);
   }
 
+  addPatient(requestBody: PatientModel): Observable<any> {
+    return this.http.post(this.url, requestBody);
+  }
+
 }

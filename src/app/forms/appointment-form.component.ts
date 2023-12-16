@@ -13,7 +13,7 @@ export class AppointmentFormComponent {
     date: new FormControl('', Validators.required),
     startTime: new FormControl('', Validators.required),
     endTime: new FormControl('', Validators.required),
-    status: new FormControl('', Validators.required),
+    // status: new FormControl('', Validators.required),
     doctor: new FormControl('', Validators.required),
     patient: new FormControl('', Validators.required)
   });
@@ -30,7 +30,7 @@ export class AppointmentFormComponent {
     this.appointmentForm.controls.date.setValue(this.currentAppointment.date);
     this.appointmentForm.controls.startTime.setValue(this.currentAppointment.startTime);
     this.appointmentForm.controls.endTime.setValue(this.currentAppointment.endTime);
-    this.appointmentForm.controls.status.setValue(this.currentAppointment.status);
+    // this.appointmentForm.controls.status.setValue(this.currentAppointment.status);
     this.appointmentForm.controls.doctor.setValue(this.currentAppointment.doctor);
     this.appointmentForm.controls.patient.setValue(this.currentAppointment.patient);
   }
@@ -40,16 +40,13 @@ export class AppointmentFormComponent {
       date: this.appointmentForm.controls.date.getRawValue(),
       startTime: this.appointmentForm.controls.startTime.getRawValue(),
       endTime: this.appointmentForm.controls.endTime.getRawValue(),
-      status: this.appointmentForm.controls.status.getRawValue(),
+      // status: this.appointmentForm.controls.status.getRawValue(),
       doctor: this.appointmentForm.controls.doctor.getRawValue(),
       patient: this.appointmentForm.controls.patient.getRawValue()
     }
 
-    if (this.currentAppointment) {
-      this.dialogRef.close({ event: 'submit', data: { value: updatedCountry, isSearch: false } });
-    } else {
-      this.dialogRef.close({ event: 'add', data: { value: updatedCountry, isSearch: false } });
-    }
+      this.dialogRef.close({ event: 'add', data: updatedCountry});
+    
   }
 
   cancel(): void {

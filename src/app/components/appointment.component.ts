@@ -47,5 +47,24 @@ export class AppointmentComponent implements OnInit {
     location.reload();
   }
 
+  openDialog(appointment?: AppointmentModel): void {
+    console.log('opening dialog');
+    const dialogRef = this.dialogRef.open(AppointmentFormComponent, {
+      width: '500px',
+      backdropClass: 'custom-dialog-backdrop-class',
+      panelClass: 'custom-dialog-panel-class',
+      data: appointment
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('close');
+
+      if (result.event === 'add') {
+        this.appointmentService.addAppointment(result.data).subscribe();
+        location.reload();
+      }
+    })
+  }
+
 }
 
