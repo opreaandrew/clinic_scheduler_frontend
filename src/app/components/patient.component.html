@@ -1,3 +1,13 @@
+<div style="display: flex; align-items: center; justify-content: center; height: 5vh;">
+  <span style="margin: 20px;">Patients</span>
+</div>
+
+<div class="add-button" (click)="openDialog()"
+  style="cursor: pointer; display: flex; align-items: center;justify-content: center;">
+  <span style="margin-right: 8px;">Add Patient</span>
+  <mat-icon aria-hidden="false" aria-label="Add Patient" fontIcon="add_circle" style="cursor: pointer;"></mat-icon>
+</div>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>

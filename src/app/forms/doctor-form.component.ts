@@ -35,9 +35,9 @@ export class DoctorFormComponent implements OnInit{
 
 
     if (this.currentDoctor) {
-      this.dialogRef.close({ event: 'submit', data: { value: updatedDoctor, isSearch: false } });
+      this.dialogRef.close({ event: 'submit', data: updatedDoctor});
     } else {
-      this.dialogRef.close({ event: 'add', data: { value: updatedDoctor, isSearch: false } });
+      this.dialogRef.close({ event: 'add', data: updatedDoctor});
     }
 
   }
