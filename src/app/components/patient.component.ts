@@ -48,10 +48,10 @@ export class PatientComponent implements OnInit {
       if (result.event === 'submit' && patient) {
         this.patientService.updatePatient(patient.id, result.data).subscribe();
         location.reload();
-      } // else if (result.event === 'add') {
-      //   this.appointmentService.addAppointment(result.data).subscribe();
-      //   location.reload();
-      // }
+      } else if (result.event === 'add') {
+        this.appointmentService.addAppointment(result.data).subscribe();
+        location.reload();
+      }
     })
   }
 
